@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/icon_ugh_back"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="欢迎光临 U购屋"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="50dp"
+        android:text="请站稳，不要来回走动开门后请及时出门如果没出去，请不要慌张站稳后门会再次自动开启！"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
+</LinearLayout>

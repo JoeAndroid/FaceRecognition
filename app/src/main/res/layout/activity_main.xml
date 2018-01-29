@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="当前门序号:"
+            android:textColor="#FF393939"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etRoomCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:hint="请输入门牌号"
+            android:inputType="number"
+            android:maxWidth="60dp"
+            android:singleLine="true"
+            android:text="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="服务器IP:"
+            android:textColor="#FF393939"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:digits="0123456789."
+            android:gravity="center"
+            android:hint="请输入数据库 ip"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:text="10.10.10.138" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="采集对比最大时间:"
+            android:textColor="#FF393939"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入采集倒计时时间:"
+            android:inputType="number"
+            android:maxWidth="40dp"
+            android:singleLine="true"
+            android:text="30" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="秒  " />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="采集对比成功次数:"
+            android:textColor="#FF393939"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入门牌号"
+            android:inputType="number"
+            android:singleLine="true"
+            android:text="5" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="功能:"
+            android:textColor="#FF393939"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/rgFunction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbGather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="采集" />
+
+            <RadioButton
+                android:id="@+id/rbContrast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="对比" />
+
+            <RadioButton
+                android:id="@+id/rbGatherContrast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:checked="true"
+                android:text="采集对比" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCollectContrast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFB7B7B7"
+        android:gravity="center"
+        android:lines="1"
+        android:padding="10dp"
+        android:text="采集对比"
+        android:textColor="#FF393939"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="10dp"
+        android:text="此页面只有在第一次启动的时候会显示，以后门号和采集属性已存在就不用再让用户选择了，直接进入正常运行页面。如果想重新选择，只有卸载程序重新下载。"
+        android:textColor="#FF393939"
+        android:textSize="16sp" />
+</LinearLayout>

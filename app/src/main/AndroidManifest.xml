@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ughouse.facegverify"
+    android:installLocation="internalOnly">
+    <!-- camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 使用闪光灯权限 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <!-- sdcard -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- wifi internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--广播权限-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.ughouse.facegverify.MainActivity" />
+
+        <activity
+            android:name=".activity.PermissionAcitivity"
+            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.WelComeActivity"
+            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.DetecterActivity"
+            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.GatherFaceActivity"
+            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+
+        <!-- 注册读取数据库服务 -->
+        <service android:name=".service.FRService" />
+        <service android:name=".service.InnerService" />
+        <service
+            android:name=".service.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!--注册开机自启广播-->
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

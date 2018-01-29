@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">安UGHFaceGVerify</string>
+
+    <string name="gather_success">通过!\n欢迎光临U 购屋</string>
+    <string name="contrast_success">通过!\n欢迎下次光临U 购屋</string>
+    <string name="gather_fail">失败!\n请出门重新进入</string>
+</resources>
