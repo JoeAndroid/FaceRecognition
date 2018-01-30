@@ -2,22 +2,109 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 26
+
+    signingConfigs {
+        debug {
+            storeFile file("NengLiangKey")
+            storePassword "nengliang"
+            keyAlias "nengliang"
+            keyPassword "nengliang"
+        }
+
+        release {
+            storeFile file("NengLiangKey")
+            storePassword "nengliang"
+            keyAlias "nengliang"
+            keyPassword "nengliang"
+        }
+
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable "ResourceType"
+    }
+
+
     defaultConfig {
         applicationId "com.ughouse.facegverify"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        flavorDimensions "versionCode"
+        // Enabling multidex support.
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 默认是umeng的渠道
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "nengliang"]
         sourceSets.main {
             jniLibs.srcDirs = ['libs']
         }
     }
     buildTypes {
-        release {
+
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
         }
+
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //不混淆
+            minifyEnabled false
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk  _${releaseTime()} 时间  _v${defaultConfig.versionName} 版本号
+                        def fileName = "ugohouse_${variant.productFlavors[0].name}_${defaultConfig.versionName}.apk"
+                        outputFileName = fileName
+                    }
+                }
+            }
+        }
+    }
+
+    def flavors = productFlavors {
+        samsung {}
+        sougou {}
+        chuizi {}
+        _360 {}
+        baidu {}
+        xiaomi {}
+       /* qq {}
+        anzhi {}
+        huawei {}
+        appchina {}
+        gfan {}
+        mumayi {}
+        flyme {}
+        anzhuo {}
+        _91 {}
+        pp {}
+        leshi {}
+        lenovo {}
+        nengliang {}
+        vivo {}
+        oppo {}*/
+
+    }
+    flavors
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 }
 
