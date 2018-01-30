@@ -1,5 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+
+def getMyStoreFile() {
+    if ("true".equals(IS_JENKINS)) {
+        return file("/Users/joe/channel")
+    } else {
+        return file("/Users/joe/channel")
+    }
+}
+
 android {
     compileSdkVersion 26
 
@@ -79,27 +88,27 @@ android {
     }
 
     def flavors = productFlavors {
-        samsung {}
-        sougou {}
-        chuizi {}
-        _360 {}
-        baidu {}
         xiaomi {}
-       /* qq {}
-        anzhi {}
-        huawei {}
-        appchina {}
-        gfan {}
-        mumayi {}
-        flyme {}
-        anzhuo {}
-        _91 {}
-        pp {}
-        leshi {}
-        lenovo {}
-        nengliang {}
-        vivo {}
-        oppo {}*/
+        /* samsung {}
+         sougou {}
+         chuizi {}
+         _360 {}
+         baidu {}*/
+        /* qq {}
+         anzhi {}
+         huawei {}
+         appchina {}
+         gfan {}
+         mumayi {}
+         flyme {}
+         anzhuo {}
+         _91 {}
+         pp {}
+         leshi {}
+         lenovo {}
+         nengliang {}
+         vivo {}
+         oppo {}*/
 
     }
     flavors
