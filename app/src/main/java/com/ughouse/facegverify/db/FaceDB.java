@@ -10,6 +10,7 @@ import com.arcsoft.facerecognition.AFR_FSDKVersion;
 import com.guo.android_extend.java.ExtInputStream;
 import com.guo.android_extend.java.ExtOutputStream;
 import com.ughouse.facegverify.bean.UgFaceDataBean;
+import com.ughouse.facegverify.util.FileUtils;
 import com.ughouse.facegverify.util.MySqlUtil;
 
 import java.io.File;
@@ -93,27 +94,12 @@ public class FaceDB {
             return false;
         }
         try {
-            FileInputStream fs = new FileInputStream(mDBPath + "/face.txt");
-            ExtInputStream bos = new ExtInputStream(fs);
-            //load version
-            String version_saved = bos.readString();
-            if (version_saved.equals(mFRVersion.toString() + "," + mFRVersion.getFeatureLevel())) {
-                mUpgrade = true;
+            List<String> fileNames = FileUtils.getFileList(mDBPath);
+            for (String name : fileNames) {
+                mRegister.add(new FaceRegist(new String(name)));
             }
-            //load all regist name.
-            if (version_saved != null) {
-                for (String name = bos.readString(); name != null; name = bos.readString()) {
-                    if (new File(mDBPath + "/" + name + ".data").exists()) {
-                        mRegister.add(new FaceRegist(new String(name)));
-                    }
-                }
-            }
-            bos.close();
-            fs.close();
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -203,23 +189,23 @@ public class FaceDB {
                 mRegister.add(frface);
             }
 
-            if (saveInfo()) {
-                //update all names
-                FileOutputStream fs = new FileOutputStream(mDBPath + "/face.txt", true);
+//            if (saveInfo()) {
+            //update all names
+              /*  FileOutputStream fs = new FileOutputStream(mDBPath + "/face.txt", true);
                 ExtOutputStream bos = new ExtOutputStream(fs);
                 for (FaceRegist frface : mRegister) {
                     bos.writeString(frface.mName);
                 }
                 bos.close();
-                fs.close();
+                fs.close();*/
 
-                //save new feature
-                fs = new FileOutputStream(mDBPath + "/" + name + ".data", true);
-                bos = new ExtOutputStream(fs);
-                bos.writeBytes(face.getFeatureData());
-                bos.close();
-                fs.close();
-            }
+            //save new feature
+            FileOutputStream fs = new FileOutputStream(mDBPath + "/" + name + ".data", true);
+            ExtOutputStream bos = new ExtOutputStream(fs);
+            bos.writeBytes(face.getFeatureData());
+            bos.close();
+            fs.close();
+//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -245,22 +231,20 @@ public class FaceDB {
                 }
             }
 
-            if (find) {
-                if (saveInfo()) {
-                    //update all names
-                    FileOutputStream fs = new FileOutputStream(mDBPath + "/face.txt", true);
-                    ExtOutputStream bos = new ExtOutputStream(fs);
-                    for (FaceRegist frface : mRegister) {
-                        bos.writeString(frface.mName);
-                    }
-                    bos.close();
-                    fs.close();
-                }
-            }
+//            if (find) {
+//                if (saveInfo()) {
+//                    //update all names
+//                    FileOutputStream fs = new FileOutputStream(mDBPath + "/face.txt", true);
+//                    ExtOutputStream bos = new ExtOutputStream(fs);
+//                    for (FaceRegist frface : mRegister) {
+//                        bos.writeString(frface.mName);
+//                    }
+//                    bos.close();
+//                    fs.close();
+//                }
+//            }
             return find;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;

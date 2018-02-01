@@ -4,6 +4,8 @@ import android.os.Environment;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qiaobing on 2018/1/17.
@@ -49,5 +51,25 @@ public class FileUtils {
         }
 
         return appCacheDir;
+    }
+
+    /**
+     * 返回指定路径下所有文件名称
+     *
+     * @param path
+     */
+    public static List<String> getFileList(String path) {
+        File file = new File(path);
+        List<String> fileNames = new ArrayList<>();
+        if (file.exists()) {
+            File[] files = file.listFiles();
+            for (File file1 : files) {
+                String fileName = file1.getName();
+                if (file1.isFile() && fileName.endsWith("data")) {
+                    fileNames.add(fileName.substring(0, fileName.lastIndexOf('.')));
+                }
+            }
+        }
+        return fileNames;
     }
 }

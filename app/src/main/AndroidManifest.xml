@@ -51,11 +51,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
-            android:name=".activity.RegisterActivity"
-            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity
             android:name=".activity.GatherFaceActivity"
             android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
